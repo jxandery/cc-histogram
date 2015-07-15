@@ -8,4 +8,8 @@ class HistogramTest < Minitest::Test
    assert Histogram
   end
 
+  def test_it_can_convert_vertical_arrays_into_string
+    example = Histogram.new([3,1])
+    assert_equal "xxx  x", example.stringify
+  end
 end
