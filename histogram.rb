@@ -15,4 +15,10 @@ class Histogram
   def transpose
     stringify.chars.each_slice(level).to_a.transpose
   end
+
+  def find_width
+    transpose.map do |t|
+      t.count('x')
+    end
+  end
 end
