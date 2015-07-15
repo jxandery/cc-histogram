@@ -48,4 +48,9 @@ class HistogramTest < Minitest::Test
     assert_equal [1, 2, 3, 4], example.find_width
   end
 
+
+  def test_it_can_find_all_widths_for_two_columns
+    example = Histogram.new([3,1])
+    assert_equal [[1,0], [1,0], [1,1]], example.find_all_width
+  end
 end
