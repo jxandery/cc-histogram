@@ -23,9 +23,14 @@ class HistogramTest < Minitest::Test
     assert_equal "xxxx xxx   x  xx", example.stringify
   end
 
-  def test_it_can_convert_string_into_array
+  def test_it_can_convert_string_into_array_with_two_columns
     example = Histogram.new([3,1])
     assert_equal [['x', ' '], ['x', ' '], ['x', 'x']], example.transpose
+  end
+
+  def test_it_can_convert_string_into_array_with_three_columns
+    example = Histogram.new([3,1,2])
+    assert_equal [['x', ' ', ' '], ['x', ' ', 'x'], ['x', 'x', 'x']], example.transpose
   end
 
   def test_it_can_transpose_vertical_arrays
@@ -37,4 +42,5 @@ class HistogramTest < Minitest::Test
     example = Histogram.new([4,3,1,2])
     assert_equal [1, 2, 3, 4], example.find_width
   end
+
 end
