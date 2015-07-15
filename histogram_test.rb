@@ -32,4 +32,9 @@ class HistogramTest < Minitest::Test
     example = Histogram.new([3,1])
     assert_equal [1,1,2], example.find_width
   end
+
+  def test_it_can_transpose_multiple_vertical_array
+    example = Histogram.new([4,3,1,2])
+    assert_equal [1, 2, 3, 4], example.find_width
+  end
 end
