@@ -22,4 +22,9 @@ class HistogramTest < Minitest::Test
     example = Histogram.new([4,3,1,2])
     assert_equal "xxxx xxx   x  xx", example.stringify
   end
+
+  def test_it_can_convert_string_into_array
+    example = Histogram.new([3,1])
+    assert_equal [['x', ' '], ['x', ' '], ['x', 'x']], example.transpose
+  end
 end
