@@ -11,4 +11,8 @@ class Histogram
       ('x' * num).rjust(level)
     end.join
   end
+
+  def transpose
+    stringify.chars.each_slice(level).to_a.transpose
+  end
 end
