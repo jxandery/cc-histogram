@@ -33,6 +33,11 @@ class HistogramTest < Minitest::Test
     assert_equal [['x', ' ', ' '], ['x', ' ', 'x'], ['x', 'x', 'x']], example.transpose
   end
 
+  def test_it_can_convert_string_into_array_with_four_columns
+    example = Histogram.new([4,3,1,2])
+    assert_equal [['x', ' ', ' ', ' '], ['x', 'x', ' ', ' '], ['x', 'x', ' ', 'x'], ['x', 'x', 'x', 'x']], example.transpose
+  end
+
   def test_it_can_transpose_vertical_arrays
     example = Histogram.new([3,1])
     assert_equal [1,1,2], example.find_width
