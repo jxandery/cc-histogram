@@ -5,7 +5,7 @@ require './histogram'
 class HistogramTest < Minitest::Test
 
   def test_it_exists
-   assert Histogram
+    assert Histogram
   end
 
   def test_it_can_convert_vertical_arrays_into_string
