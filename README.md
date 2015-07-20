@@ -1,4 +1,4 @@
-This is a code challenge from Turing School focused on algorithmic thinking. The challenge can be found [here](https://github.com/turingschool/technical_puzzles/blob/master/largest_histogram_rec.markdown)
+This is a code challenge from Turing School focused on algorithmic thinking. The challenge can be found [here](https://github.com/turingschool/technical_puzzles/blob/master/largest_histogram_rec.markdown).
 
 Finding the Largest Rectangle Under a Histogram
 
