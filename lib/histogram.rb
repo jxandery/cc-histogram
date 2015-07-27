@@ -1,41 +1,41 @@
 require_relative 'format'
 
 class Histogram
-  attr_reader :level, :input, :arr, :format
+  attr_reader :input, :level, :rectangles, :format
 
   def initialize(input)
-    @level = input.max
     @input = input
-    @arr = {}
-    hash_setup
+    @level = input.max
+    @rectangles = {}
     @format = Format.new
+
+    rectangle_collection_setup
   end
 
-  def hash_setup
+  def rectangle_collection_setup
     (1..level).to_a.map do |i|
-      arr[i] = []
+      rectangles[i] = []
     end
   end
 
-  def single_column?(row, index)
-    (row[index] == 'x' && row[index + 1] == ' ') || (row[index] == 'x' && row[index + 1].nil?)
+  def single_column?(row, column)
+    (row[column] == 'x' && row[column + 1] == ' ') || (row[column] == 'x' && row[column + 1].nil?)
   end
 
-  def multiple_columns?(row, index)
-    row[index] == 'x' && row[index + 1] == 'x'
+  def multiple_columns?(row, column)
+    row[column] == 'x' && row[column + 1] == 'x'
   end
 
   def rectangle_size(row)
     col_counter = 1
-    row.each_with_index do |item, index|
-      if multiple_columns?(row, index)
+    row.each_with_index do |item, column|
+      if multiple_columns?(row, column)
         col_counter += 1
-      elsif single_column?(row, index)
-        @arr[level] << col_counter
+      elsif single_column?(row, column)
+        @rectangles[level] << col_counter
       else
         col_counter = 1
       end
-        index += 1
     end
   end
 
@@ -44,12 +44,11 @@ class Histogram
      rectangle_size(i)
      @level -= 1
    end
-   arr
   end
 
   def max_retangle
     all_rectangles
-    arr.map do |key, value|
+    rectangles.map do |key, value|
       key * value.max
     end.max
   end
