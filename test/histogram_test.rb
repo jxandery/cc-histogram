@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './histogram'
+require './lib/histogram'
 
 class HistogramTest < Minitest::Test
 
@@ -15,37 +15,37 @@ class HistogramTest < Minitest::Test
 
   def test_adjacent_one_column
     example = Histogram.new([3,1,2])
-    example.widths(['x', ' ', ' '])
+    example.rectangle_size(['x', ' ', ' '])
     assert_equal [1], example.arr[3]
   end
 
   def test_adjacent_two_column
     example = Histogram.new([3,3,1])
-    example.widths(['x', 'x', ' '])
+    example.rectangle_size(['x', 'x', ' '])
     assert_equal [2], example.arr[3]
   end
 
   def test_adjacent_three_column
     example = Histogram.new([3,3,3])
-    example.widths(['x', 'x', 'x'])
+    example.rectangle_size(['x', 'x', 'x'])
     assert_equal [3], example.arr[3]
   end
 
   def test_adjacent_single_column
     example = Histogram.new([3,1,3])
-    example.widths(['x', ' ', 'x'])
+    example.rectangle_size(['x', ' ', 'x'])
     assert_equal [1,1], example.arr[3]
   end
 
   def test_multiple_adjacent_single_column
     example = Histogram.new([3,3,1,3])
-    example.widths(['x', 'x', ' ', 'x'])
+    example.rectangle_size(['x', 'x', ' ', 'x'])
     assert_equal [2,1], example.arr[3]
   end
 
   def test_multiple_adjacent_multiple_column
     example = Histogram.new([3,3,1,3,3])
-    example.widths(['x', 'x', ' ', 'x', 'x'])
+    example.rectangle_size(['x', 'x', ' ', 'x', 'x'])
     assert_equal [2,2], example.arr[3]
   end
 

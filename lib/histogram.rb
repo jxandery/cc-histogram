@@ -1,4 +1,4 @@
-require './format'
+require_relative 'format'
 
 class Histogram
   attr_reader :level, :input, :arr, :format
@@ -25,7 +25,7 @@ class Histogram
     items[index] == 'x' && items[index + 1] == 'x'
   end
 
-  def widths(items)
+  def rectangle_size(items)
     col_counter = 1
     items.each_with_index do |item, index|
       if multiple_columns?(items, index)
@@ -41,7 +41,7 @@ class Histogram
 
   def all_widths
    format.transpose(input).each do |i|
-     widths(i)
+     rectangle_size(i)
      @level -= 1
    end
    arr

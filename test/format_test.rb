@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './format'
+require './lib/format'
 
 class FormatTest < Minitest::Test
 
