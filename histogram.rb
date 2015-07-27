@@ -1,27 +1,20 @@
+require './format'
+
 class Histogram
-  attr_reader :level, :input, :arr
+  attr_reader :level, :input, :arr, :format
 
   def initialize(input)
     @level = input.max
     @input = input
     @arr = {}
     hash_setup
+    @format = Format.new
   end
 
   def hash_setup
     (1..level).to_a.map do |i|
       arr[i] = []
     end
-  end
-
-  def stringify
-    input.map do |num|
-      ('x' * num).rjust(level)
-    end.join
-  end
-
-  def transpose
-    stringify.chars.each_slice(level).to_a.transpose
   end
 
   def single_column?(items, index)
@@ -47,8 +40,8 @@ class Histogram
   end
 
   def all_widths
-   transpose.each do |input|
-     widths(input)
+   format.transpose(input).each do |i|
+     widths(i)
      @level -= 1
    end
    arr
@@ -59,16 +52,5 @@ class Histogram
     arr.map do |key, value|
       key * value.max
     end.max
-  end
-
-  def find_all_width
-    transpose.map do |items|
-      width_counter = 0
-      items.map.each_with_index do |item, index|
-        widths(item, index)
-        width_counter += 1
-        arr
-      end
-    end
   end
 end
