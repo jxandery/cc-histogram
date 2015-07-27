@@ -51,13 +51,13 @@ class HistogramTest < Minitest::Test
 
   def test_find_width_for_multiple_levels
     example = Histogram.new([2,2,1,2,2])
-    example.all_widths
+    example.all_rectangles
     assert_equal({2=>[2,2], 1=>[5]}, example.arr)
   end
 
   def test_find_width_for_multiple_levels2
     example = Histogram.new([3,2,1,2,3])
-    example.all_widths
+    example.all_rectangles
     assert_equal({3=> [1,1], 2=>[2,2], 1=>[5]}, example.arr)
   end
 

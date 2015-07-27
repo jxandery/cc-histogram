@@ -17,20 +17,20 @@ class Histogram
     end
   end
 
-  def single_column?(items, index)
-    (items[index] == 'x' && items[index + 1] == ' ') || (items[index] == 'x' && items[index + 1].nil?)
+  def single_column?(row, index)
+    (row[index] == 'x' && row[index + 1] == ' ') || (row[index] == 'x' && row[index + 1].nil?)
   end
 
-  def multiple_columns?(items, index)
-    items[index] == 'x' && items[index + 1] == 'x'
+  def multiple_columns?(row, index)
+    row[index] == 'x' && row[index + 1] == 'x'
   end
 
-  def rectangle_size(items)
+  def rectangle_size(row)
     col_counter = 1
-    items.each_with_index do |item, index|
-      if multiple_columns?(items, index)
+    row.each_with_index do |item, index|
+      if multiple_columns?(row, index)
         col_counter += 1
-      elsif single_column?(items, index)
+      elsif single_column?(row, index)
         @arr[level] << col_counter
       else
         col_counter = 1
@@ -39,7 +39,7 @@ class Histogram
     end
   end
 
-  def all_widths
+  def all_rectangles
    format.transpose(input).each do |i|
      rectangle_size(i)
      @level -= 1
@@ -48,7 +48,7 @@ class Histogram
   end
 
   def max_retangle
-    all_widths
+    all_rectangles
     arr.map do |key, value|
       key * value.max
     end.max
