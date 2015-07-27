@@ -1,20 +1,17 @@
 class Histogram
-  attr_reader :level, :input, :counter, :arr #:index
+  attr_reader :level, :input, :arr
 
   def initialize(input)
     @level = input.max
     @input = input
-    #@index = 0
-    @counter = 1
-    @arr = hash_setup
+    @arr = {}
+    hash_setup
   end
 
   def hash_setup
-    @arr = {}
     (1..level).to_a.map do |i|
       arr[i] = []
     end
-    arr
   end
 
   def stringify
